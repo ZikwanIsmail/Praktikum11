@@ -1,0 +1,143 @@
+package praktikum11_zikwan;
+
+
+public class Praktikum11_Zikwan {
+
+   
+    public static void main(String[] args) {
+       BangunDatar lingkaran = new  Lingkaran(10, "Merah");
+       BangunDatar segiTiga = new  SegiTiga(13,5, "Biru");
+       BangunDatar segiEmpat = new  SegiEmpat(5, "Hitam");
+       
+       BangunDatar[] bangunDatar = new BangunDatar[3];
+       bangunDatar[0] = lingkaran;
+       bangunDatar[1] = segiTiga;
+       bangunDatar[2] = segiEmpat;
+       
+       for (int i = 0; i<3;i++){
+           System.out.println("Bangun Datar"+(i + 1));
+           System.out.println("Warna :"+ bangunDatar[i].getWarna());
+           System.out.println("Luas :"+ bangunDatar[i].luas());
+           System.out.println("Keliling :"+bangunDatar[i].keliling());
+           System.out.println ();
+       }
+    }
+    
+}
+
+
+//
+
+package praktikum11_zikwan;
+
+
+public abstract class BangunDatar{
+    protected String warna ;
+   
+
+    public String getWarna(){
+        return warna;
+    }
+    public void setWarna(String warna){
+        this.warna = warna;
+    }
+    protected abstract double luas();
+    public abstract double keliling();
+}
+
+//
+
+package praktikum11_zikwan;
+
+
+public class Lingkaran extends BangunDatar {
+    private double jari;
+    public Lingkaran (double jari, String warna){
+        this.jari = jari;
+        this.warna = warna;
+    }
+    public double getJari(){
+        return jari;
+    }
+    public void setJari(double jari){
+        this.jari = jari;
+    }
+    public String getWarna(){
+        return this.warna;
+    }
+    public void setWarna(String warna){
+        this.warna = warna;
+    }
+    @Override
+    public double keliling(){
+        return 2 * Math.PI * jari;
+    }
+    @Override
+    public double luas(){
+        return  Math.PI * jari * jari;
+    }
+}
+//
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package praktikum11_zikwan;
+
+
+public class SegiTiga extends BangunDatar {
+    private double alas;
+    private double tinggi;
+    public SegiTiga(double alas, double tinggi, String warna ){
+    this.alas = alas;
+    this.tinggi = tinggi;
+}
+   @Override
+   public double luas(){
+       return this.alas * this.tinggi/2;
+   }
+   @Override
+   public double keliling(){
+       return 3*this.alas ;
+   }
+   public double getAlas(){
+       return alas;
+   }
+   public void setAlas(double alas){
+       this.alas = alas;
+   }
+   public double getTinggi(){
+       return tinggi;
+   }
+   public void setTinggi(double tinggi){
+       this.tinggi = tinggi;
+   }
+}
+//
+
+
+package praktikum11_zikwan;
+
+
+public class SegiEmpat extends BangunDatar{
+    public double sisi;
+    public SegiEmpat(double sisi, String warna){
+    this.sisi = sisi;
+}
+   @Override
+   public double luas(){
+       return this.sisi * this.sisi;
+   }
+   @Override
+   public double keliling(){
+       return 4*this.sisi ;
+   }
+   public double getSisi(){
+       return sisi;
+   }
+   public void setSisi(double sisi){
+       this.sisi = sisi;
+   }
+}
